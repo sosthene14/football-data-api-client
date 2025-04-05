@@ -41,6 +41,9 @@ const client = new FootballDataClient({
 });
 ```
 
+### GET API KEY
+https://www.football-data.org/
+
 ## Usage
 
 The client provides access to four main resources:

@@ -10,6 +10,37 @@
       "lint": "eslint . --ext .ts",
       "prepublishOnly": "npm run build"
     },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/sosthene14/football-data-api-client"
+    },
+    "bugs": {
+        "url": "https://github.com/sosthene14/football-data-api-client/issues"
+    },
+    "homepage": "https://github.com/sosthene14/football-data-api-client#readme",
+   "keywords": [
+  "football",
+  "football-data",
+  "api",
+  "node",
+  "football-data.org",
+  "typescript",
+  "soccer",
+  "football api client",
+  "football stats",
+  "premier league",
+  "football-data-client",
+  "nodejs",
+  "typescript client",
+  "sports data",
+  "football scores",
+  "football teams",
+  "fixtures",
+  "match schedule",
+  "football-data-wrapper"
+],
+    "author": "Sosthene Mounsambote",
+    "license": "MIT",
     "devDependencies": {
       "@types/jest": "^29.5.1",
       "@types/node": "^18.16.0",

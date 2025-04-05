@@ -8,22 +8,22 @@ class CompetitionsResource {
         this.basePath = constants_1.RESOURCE_PATHS.COMPETITIONS;
     }
     /**
-     * Récupère la liste des compétitions
-     */
+   * Retrieves the list of competitions
+   */
     async list(params) {
         const response = await this.request.get(this.basePath, params);
         return response.data;
     }
     /**
-     * Récupère les détails d'une compétition spécifique
-     */
+   * Retrieves details of a specific competition
+   */
     async get(params) {
         const response = await this.request.get(`${this.basePath}/${params.id}`);
         return response.data;
     }
     /**
-     * Récupère le classement d'une compétition
-     */
+  * Retrieves the ranking of a competition
+  */
     async getStandings(competitionId) {
         const response = await this.request.get(`${this.basePath}/${competitionId}/standings`);
         return response.data;
@@ -33,6 +33,27 @@ class CompetitionsResource {
      */
     async getScorers(competitionId, limit) {
         const response = await this.request.get(`${this.basePath}/${competitionId}/scorers`, { limit });
+        return response.data;
+    }
+    /**
+   * Récupère les matchs d'une compétition spécifique
+   */
+    async getMatches(competitionId, params) {
+        const response = await this.request.get(`${this.basePath}/${competitionId}/matches`, params);
+        return response.data;
+    }
+    /**
+     * Récupère les équipes participant à une compétition spécifique
+     */
+    async getTeams(competitionId, season) {
+        const response = await this.request.get(`${this.basePath}/${competitionId}/teams`, { season });
+        return response.data;
+    }
+    /**
+     * Récupère le calendrier des journées d'une compétition
+     */
+    async getMatchday(competitionId, params) {
+        const response = await this.request.get(`${this.basePath}/${competitionId}/matchday`, params);
         return response.data;
     }
 }

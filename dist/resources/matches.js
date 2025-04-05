@@ -42,6 +42,76 @@ class MatchesResource {
         const response = await this.request.get(`${this.basePath}`, { teams: `${team1Id},${team2Id}`, limit });
         return response.data;
     }
+    /**
+   * Récupère les matchs d'une équipe spécifique
+   */
+    async getByTeam(teamId, params) {
+        const response = await this.request.get(`${constants_1.RESOURCE_PATHS.TEAMS}/${teamId}/matches`, params);
+        return response.data;
+    }
+    /**
+     * Récupère les matchs en fonction de leur statut
+     */
+    async getByStatus(status, params) {
+        const statusParam = Array.isArray(status) ? status.join(',') : status;
+        const response = await this.request.get(this.basePath, { ...params, status: statusParam });
+        return response.data;
+    }
+    /**
+     * Récupère les matchs à venir
+     */
+    async getUpcoming(limit) {
+        const response = await this.request.get(this.basePath, { status: 'SCHEDULED', limit });
+        return response.data;
+    }
+    /**
+     * Récupère les matchs terminés récemment
+     */
+    async getFinished(limit, dateFrom) {
+        const defaultDateFrom = dateFrom || new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+        const response = await this.request.get(this.basePath, { status: 'FINISHED', dateFrom: defaultDateFrom, limit });
+        return response.data;
+    }
+    /**
+     * Récupère les matchs en direct
+     */
+    async getLive() {
+        const response = await this.request.get(this.basePath, { status: 'LIVE,IN_PLAY,PAUSED' });
+        return response.data;
+    }
+    /**
+     * Récupère les statistiques d'un match spécifique
+     */
+    async getStatistics(matchId) {
+        const response = await this.request.get(`${this.basePath}/${matchId}/statistics`);
+        return response.data;
+    }
+    /**
+     * Récupère les événements détaillés d'un match (buts, cartons, remplacements, etc.)
+     */
+    async getEvents(matchId) {
+        const response = await this.request.get(`${this.basePath}/${matchId}/events`);
+        return response.data;
+    }
+    /**
+     * Récupère les compositions d'équipe pour un match
+     */
+    async getLineups(matchId) {
+        const response = await this.request.get(`${this.basePath}/${matchId}/lineups`);
+        return response.data;
+    }
+    /**
+     * Récupère les matchs pour une date spécifique
+     */
+    async getByDate(date) {
+        return this.list({ dateFrom: date, dateTo: date });
+    }
+    /**
+     * Récupère les matchs pour une période spécifique
+     */
+    async getByDateRange(dateFrom, dateTo, params) {
+        return this.list({ ...params, dateFrom, dateTo });
+    }
 }
 exports.MatchesResource = MatchesResource;
 //# sourceMappingURL=matches.js.map
